@@ -1,10 +1,12 @@
 package com.example.employeesapp
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.employee_item.view.*
@@ -31,6 +33,18 @@ class EmployeesAdapter(private val employees: JSONArray) :
         val phoneTextView: TextView = view.phoneTextView
         val departmentTextView: TextView = view.departmentTextView
         val photoImageView: ImageView = view.photoImageView
+
+        // Add a item click listener
+        init {
+            itemView.setOnClickListener {
+                // create an explicit intent
+                val intent = Intent(view.context, EmployeeActivity::class.java)
+                // add selected employee JSON as a string data
+                intent.putExtra("employee", employees[adapterPosition].toString())
+                // start a new activity
+                view.context.startActivity(intent)
+            }
+        }
     }
 
     // Bind data to UI View Holder

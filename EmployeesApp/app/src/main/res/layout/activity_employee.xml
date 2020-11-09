@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EmployeeActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="5dp">
+
+        <TextView
+            style="@style/EmployeeText"
+            android:layout_marginTop="10dp"
+            android:id="@+id/nameTextView"/>
+
+        <TextView
+            style="@style/EmployeeText"
+            android:id="@+id/titleTextView"/>
+
+        <TextView
+            style="@style/EmployeeText"
+            android:id="@+id/emailTextView"/>
+
+        <TextView
+            style="@style/EmployeeText"
+            android:id="@+id/phoneTextView"/>
+
+        <TextView
+            style="@style/EmployeeText"
+            android:id="@+id/departmentTextView"/>
+
+        <ImageView
+            android:id="@+id/photoImageView"
+            android:layout_width="72dp"
+            android:layout_height="72dp"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
