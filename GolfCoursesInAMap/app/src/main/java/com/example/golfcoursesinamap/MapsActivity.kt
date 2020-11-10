@@ -3,6 +3,7 @@ package com.example.golfcoursesinamap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
@@ -14,8 +15,11 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.android.synthetic.main.info_window.view.*
 import org.json.JSONArray
+
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -99,6 +103,35 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         )
         // Add the request to the RequestQueue
         queue.add(jsonObjectRequest)
-        // ADD LATER custom info window adapter here
+        // Add custom info window adapter
+        mMap.setInfoWindowAdapter(CustomInfoWindowAdapter())
+    }
+
+    internal inner class CustomInfoWindowAdapter : GoogleMap.InfoWindowAdapter {
+        private val contents: View = layoutInflater.inflate(R.layout.info_window, null)
+
+        override fun getInfoWindow(marker: Marker?): View? {
+            return null
+        }
+
+        override fun getInfoContents(marker: Marker): View {
+            // UI elements
+            val titleTextView = contents.titleTextView
+            val addressTextView = contents.addressTextView
+            val phoneTextView = contents.phoneTextView
+            val emailTextView = contents.emailTextView
+            val webTextView = contents.webTextView
+            // title
+            titleTextView.text = marker.title.toString()
+            // get data from Tag list
+            if (marker.tag is List<*>){
+                val list: List<String> = marker.tag as List<String>
+                addressTextView.text = list[0]
+                phoneTextView.text = list[1]
+                emailTextView.text = list[2]
+                webTextView.text = list[3]
+            }
+            return contents
+        }
     }
 }
